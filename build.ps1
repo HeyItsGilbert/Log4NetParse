@@ -46,7 +46,12 @@ if ($Bootstrap.IsPresent) {
             Install-Module -Name PSDepend -Repository PSGallery -Scope CurrentUser -Force
         }
         Import-Module -Name PSDepend -Verbose:$false
-        Invoke-PSDepend -Path './requirements.psd1' -Install -Import -WarningAction SilentlyContinue
+        try {
+            Invoke-PSDepend -Path './requirements.psd1' -Install -Import -Force -WarningAction SilentlyContinue
+        } catch [System.IO.FileLoadException] {
+            $assemblyName = $_.Exception.InnerException.Message.Split(',')[0]
+            Write-Warning "$assemblyName was already loaded."
+        }
     } else {
         Write-Warning 'No [requirements.psd1] found. Skipping build dependency installation.'
     }
