@@ -52,7 +52,7 @@ Chocolatey upgraded 0/1 packages.
     0..10 | ForEach-Object {
       $randID = Get-Random -Minimum 1000 -Maximum 99999
       $randID2 = $randID - 100
-      Set-Content ("TestDrive:\chocolatey.{1}.log" -F $folder, $_) -Value @"
+      Set-Content ("TestDrive:\{1}.log" -F $folder, $_) -Value @"
 2023-06-14 14:22:09,411 $randId [DEBUG] - Ffoo
 2023-06-14 14:22:09,418 $randId [DEBUG] - _ Chocolatey:ChocolateyUpgradeCommand - Normal Run Mode _
 2023-06-14 14:22:09,422 $randId [INFO ] - Upgrading the following packages:
@@ -91,14 +91,14 @@ Chocolatey upgraded 0/1 packages.
 
   Context 'For Folder Path' {
     It 'Parses the correct default number of sessions' {
-      # There is one session in each file so there should be a total of 3
+      # There is two session in each file so there should be a total of 1
       # 3 for $randID and 3 for $randID2
-      ($multiple).Count | Should -Be 6
+      ($multiple).Count | Should -Be 2
     }
 
     It 'Parses the correct number of sessions for increased limit' {
-      # There is one session in each file so there should be a total of 10
-      # 5 for $randID and 5 for $randID2
+      # There is one session in each file so there should be a total of 20
+      # 10 for $randID and 10 for $randID2
       ($moreLimit).Count | Should -Be 20
     }
 

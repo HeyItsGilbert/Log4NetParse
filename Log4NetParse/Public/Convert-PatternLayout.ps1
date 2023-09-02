@@ -1,4 +1,5 @@
 function Convert-PatternLayout {
+  [OutputType([System.Text.RegularExpressions.Regex])]
   [CmdletBinding()]
   param (
     [string]
@@ -11,7 +12,7 @@ function Convert-PatternLayout {
   # https://rubular.com/r/r9jtIzuxJag0HV
   [regex]$patternRegex = '%(?<right_justify>-)?(?<min_width>\d+)?\.?(?<max_width>\d+)?(?<name>\w+)'
   # This wonky replace replaces any special characters so they don't mess up the regex later
-  $regExString = "^" + ($PatternLayout -replace '([\\\*\+\?\|\{\}\[\]\(,)\^\$\.\#]\B)','\$1' ) + "$"
+  $regExString = "^" + ($PatternLayout -replace '([\\\*\+\?\|\{\}\[\]\(,)\^\$\.\#]\B)', '\$1' ) + "$"
 
   $conversions = $patternRegex.Matches($PatternLayout)
   foreach ($conversion in $conversions) {
@@ -47,18 +48,18 @@ function Convert-PatternLayout {
       'exception' { '\w+' }
       'stacktrace' { '\w+' }
       'stacktracedetail' { '\w+' }
-      Default { throw "Unknown conversion pattern name: $name"}
+      Default { throw "Unknown conversion pattern name: $name" }
     }
 
     # If we detected any of the formatting bits, let's use them.
-    if(
+    if (
       $conversion.Groups['right_justify'].Success -Or
       $conversion.Groups['min_width'].Success -Or
       $conversion.Groups['max_width'].Success
     ) {
       $formatString = '{'
       # Determine the padding/truncating
-      if($conversion.Groups['min_width'].Success){
+      if ($conversion.Groups['min_width'].Success) {
         $formatString += $conversion.Groups['min_width'].Value
       } else {
         $formatString += '0'
@@ -66,24 +67,23 @@ function Convert-PatternLayout {
 
       $formatString += ','
 
-      if($conversion.Groups['max_width'].Success){
+      if ($conversion.Groups['max_width'].Success) {
         $formatString += $conversion.Groups['max_width'].Value
-      }
-      else {
+      } else {
         # Nothing, this means it can be as long as it wants
       }
       $formatString += '}'
 
       # Determine where to add the space
-      if($conversion.Groups['right_justify'].Success){
-        $regExGroup = "(?<{0}>(?=.{2}\b){1}\s*)" -F  $name, $conRegex, $formatString
+      if ($conversion.Groups['right_justify'].Success) {
+        $regExGroup = "(?<{0}>(?=.{2}\B){1}\s*)" -F $name, $conRegex, $formatString
       } else {
         # If given only a max width & no right justify then there is no spacing
         # This means truncate after N letters.
-        if($conversion.Groups['min_width'].Success -eq $False){
-          $regExGroup = "(?<{0}>(?=.{2}\b){1})" -F  $name, $conRegex, $formatString
+        if ($conversion.Groups['min_width'].Success -eq $False) {
+          $regExGroup = "(?<{0}>(?=.{2}\B){1})" -F $name, $conRegex, $formatString
         } else {
-          $regExGroup = "(?<{0}>(?=.{2}\b)\s*{1})" -F  $name, $conRegex, $formatString
+          $regExGroup = "(?<{0}>(?=.{2}\B)\s*{1})" -F $name, $conRegex, $formatString
         }
       }
     } else {

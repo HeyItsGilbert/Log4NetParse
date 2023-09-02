@@ -26,7 +26,6 @@
 function Read-Log4NetLog {
   [OutputType([System.Collections.ArrayList])]
   param (
-    [Parameter(ValueFromPipeline)]
     [ValidateScript({
         if (-Not ($_ | Test-Path) ) {
           throw "File or folder does not exist"
