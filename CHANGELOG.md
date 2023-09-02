@@ -7,3 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.1.0] Unreleased
 
+This is the initial build. Around the PatternLayout I'm doing a lot of guessing
+around what the patterns look like live. Please give me feedback on that.
+
+Primary goals:
+
+- Create a function to parse the log file.
+- Create a function to convert a PatternLayout into a Regex
+- Create tests for both functions.
