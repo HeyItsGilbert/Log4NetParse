@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.0] Compiled
+
+To support this module's classes being used in others (i.e., ChocoLogParse) this
+needs to be a compiled module. That's the only change.
+
 ## [0.1.0] Unreleased
 
 This is the initial build. Around the PatternLayout I'm doing a lot of guessing
