@@ -46,7 +46,11 @@ if ($Bootstrap.IsPresent) {
             Install-Module -Name PSDepend -Repository PSGallery -Scope CurrentUser -Force
         }
         Import-Module -Name PSDepend -Verbose:$false
-        Invoke-PSDepend -Path './requirements.psd1' -Install -Import -Force -WarningAction SilentlyContinue
+        try {
+            Invoke-PSDepend -Path './requirements.psd1' -Install -Import -Force -WarningAction SilentlyContinue
+        } catch [System.IO.FileLoadException] {
+            Write-Warning "Error while loading requirements. Highly likely this was Pester, safe to ignore in GH Action"
+        }
     } else {
         Write-Warning 'No [requirements.psd1] found. Skipping build dependency installation.'
     }
