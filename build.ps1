@@ -60,6 +60,7 @@ if ($PSCmdlet.ParameterSetName -eq 'Help') {
         Format-Table -Property Name, Description, Alias, DependsOn
 } else {
     Set-BuildEnvironment -Force
+    Invoke-PSDepend -Path './requirements.psd1' -Import -Force -WarningAction SilentlyContinue
     Invoke-psake -buildFile $psakeFile -taskList $Task -nologo -properties $Properties -parameters $Parameters
     exit ([int](-not $psake.build_success))
 }
