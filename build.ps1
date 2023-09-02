@@ -49,8 +49,7 @@ if ($Bootstrap.IsPresent) {
         try {
             Invoke-PSDepend -Path './requirements.psd1' -Install -Import -Force -WarningAction SilentlyContinue
         } catch [System.IO.FileLoadException] {
-            $assemblyName = $_.Exception.InnerException.Message.Split(',')[0]
-            Write-Warning "$assemblyName was already loaded."
+            Write-Warning "Error while loading requirements. Highly likely this was Pester, safe to ignore in GH Action"
         }
     } else {
         Write-Warning 'No [requirements.psd1] found. Skipping build dependency installation.'
