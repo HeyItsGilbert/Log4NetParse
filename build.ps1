@@ -3,23 +3,22 @@ param(
     # Build task(s) to execute
     [parameter(ParameterSetName = 'task', position = 0)]
     [ArgumentCompleter( {
-        param($Command, $Parameter, $WordToComplete, $CommandAst, $FakeBoundParams)
-        $psakeFile = './psakeFile.ps1'
-        switch ($Parameter) {
-            'Task' {
-                if ([string]::IsNullOrEmpty($WordToComplete)) {
-                    Get-PSakeScriptTasks -buildFile $psakeFile | Select-Object -ExpandProperty Name
-                }
-                else {
-                    Get-PSakeScriptTasks -buildFile $psakeFile |
+            param($Command, $Parameter, $WordToComplete, $CommandAst, $FakeBoundParams)
+            $psakeFile = './psakeFile.ps1'
+            switch ($Parameter) {
+                'Task' {
+                    if ([string]::IsNullOrEmpty($WordToComplete)) {
+                        Get-PSakeScriptTasks -buildFile $psakeFile | Select-Object -ExpandProperty Name
+                    } else {
+                        Get-PSakeScriptTasks -buildFile $psakeFile |
                         Where-Object { $_.Name -match $WordToComplete } |
                         Select-Object -ExpandProperty Name
+                    }
+                }
+                Default {
                 }
             }
-            Default {
-            }
-        }
-    })]
+        })]
     [string[]]$Task = 'default',
 
     # Bootstrap dependencies
@@ -57,10 +56,10 @@ if ($Bootstrap.IsPresent) {
 $psakeFile = './psakeFile.ps1'
 if ($PSCmdlet.ParameterSetName -eq 'Help') {
     Get-PSakeScriptTasks -buildFile $psakeFile |
-        Format-Table -Property Name, Description, Alias, DependsOn
+    Format-Table -Property Name, Description, Alias, DependsOn
 } else {
     Set-BuildEnvironment -Force
-    Invoke-PSDepend -Path './requirements.psd1' -Import -Force -WarningAction SilentlyContinue
+    # Invoke-PSDepend -Path './requirements.psd1' -Import -Force -WarningAction SilentlyContinue
     Invoke-psake -buildFile $psakeFile -taskList $Task -nologo -properties $Properties -parameters $Parameters
     exit ([int](-not $psake.build_success))
 }
