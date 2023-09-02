@@ -53,7 +53,7 @@ Chocolatey upgraded 0/1 packages.
     0..10 | ForEach-Object {
       $randID = Get-Random -Minimum 1000 -Maximum 99999
       $randID2 = $randID - 100
-      Set-Content ("$folder\{1}.log" -F $folder, $_) -Value @"
+      Set-Content ("{0}\{1}.log" -F $folder, $_) -Value @"
 2023-06-14 14:22:09,411 $randId [DEBUG] - Ffoo
 2023-06-14 14:22:09,418 $randId [DEBUG] - _ Chocolatey:ChocolateyUpgradeCommand - Normal Run Mode _
 2023-06-14 14:22:09,422 $randId [INFO ] - Upgrading the following packages:
