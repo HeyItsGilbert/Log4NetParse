@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+  <ViewDefinitions>
+    <View>
+      <Name>Log4Net Log Lines</Name>
+      <ViewSelectedBy>
+        <TypeName>Log4NetLogLine</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Label>Time</Label>
+            <Width>12</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Level</Label>
+            <Width>5</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Message</Label>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>time</PropertyName>
+                <FormatString>{0:hh:mm:ss.fff}</FormatString>
+              </TableColumnItem>
+              <TableColumnItem>
+                <ScriptBlock>
+                $bg = switch ( $_.level) {
+                  'DEBUG' { $PSStyle.Foreground.Blue }
+                  'VERBOSE' { $PSStyle.Foreground.Yellow }
+                  'WARN' { $PSStyle.Foreground.Red }
+                  'ERROR' { $PSStyle.Foreground.BrightRed }
+                  Default { $PSStyle.Foreground.White }
+                }
+                [String]::Format("{0}{1}{2}", $bg, $_.level, $PSStyle.Reset)
+                </ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>message</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+            <Wrap/>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+  </ViewDefinitions>
+</Configuration>

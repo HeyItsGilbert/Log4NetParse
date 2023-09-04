@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+  <ViewDefinitions>
+    <View>
+      <Name>Log4Net Logs</Name>
+      <ViewSelectedBy>
+        <TypeName>Log4NetLog</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Label>Time</Label>
+            <Width>18</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Thread</Label>
+            <Width>8</Width>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Log Lines</Label>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>starttime</PropertyName>
+                <FormatString>{0:MM/dd hh:mm:ss.fff}</FormatString>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>thread</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>logs</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+            <Wrap/>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+  </ViewDefinitions>
+</Configuration>
