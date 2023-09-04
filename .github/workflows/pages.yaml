@@ -28,6 +28,7 @@ jobs:
           Write-Host "::set-output name=docs_changed::$HasDiff"
 
       - name: Copy readme
+        shell: pwsh
         run: |
           Copy-Item README.md docs/index.md
       - name: Deploy docs
