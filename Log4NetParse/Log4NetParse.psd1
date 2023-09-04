@@ -12,7 +12,7 @@
   RootModule = 'Log4NetParse.psm1'
 
   # Version number of this module.
-  ModuleVersion = '0.2.0'
+  ModuleVersion = '0.3.0'
 
   # Supported PSEditions
   # CompatiblePSEditions = @()
@@ -95,25 +95,31 @@
     PSData = @{
 
       # Tags applied to this module. These help with module discovery in online galleries.
-      # Tags = @()
+      Tags = @(
+        'PSEdition_Desktop',
+        'PSEdition_Core',
+        'Windows',
+        'Linux',
+        'MacOS'
+      )
 
       # A URL to the license for this module.
-      # LicenseUri = ''
+      LicenseUri = 'https://github.com/HeyItsGilbert/Log4NetParse/blob/master/LICENSE'
 
       # A URL to the main website for this project.
-      # ProjectUri = ''
+      ProjectUri = 'https://github.com/HeyItsGilbert/Log4NetParse/'
 
       # A URL to an icon representing this module.
-      # IconUri = ''
+      IconUri = 'https://raw.githubusercontent.com/HeyItsGilbert/Log4NetParse/main/static/'
 
       # ReleaseNotes of this module
-      # ReleaseNotes = ''
+      ReleaseNotes = 'https://github.com/HeyItsGilbert/Log4NetParse/blob/master/CHANGELOG.md'
 
       # Prerelease string of this module
       # Prerelease = ''
 
       # Flag to indicate whether the module requires explicit user acceptance for install/update/save
-      # RequireLicenseAcceptance = $false
+      RequireLicenseAcceptance = $false
 
       # External dependent modules of this module
       # ExternalModuleDependencies = @()
@@ -123,7 +129,7 @@
   } # End of PrivateData hashtable
 
   # HelpInfo URI of this module
-  # HelpInfoURI = ''
+  HelpInfoURI = 'https://heyitsgilbert.github.io/Log4NetParse/'
 
   # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
   # DefaultCommandPrefix = ''

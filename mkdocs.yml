@@ -1,4 +1,4 @@
-site_name: TODo
-repo_url: todo
+site_name: "Log4NetParse PowerShell Module"
+site_url: https://heyitsgilbert.github.io/Log4NetParse/
+repo_url: https://github.com/HeyItsGilbert/Log4NetParse
 theme: readthedocs
-
