@@ -110,7 +110,7 @@
       ProjectUri = 'https://github.com/HeyItsGilbert/Log4NetParse/'
 
       # A URL to an icon representing this module.
-      IconUri = 'https://raw.githubusercontent.com/HeyItsGilbert/Log4NetParse/main/static/'
+      IconUri = 'https://raw.githubusercontent.com/HeyItsGilbert/Log4NetParse/main/static/log4neticon.png'
 
       # ReleaseNotes of this module
       ReleaseNotes = 'https://github.com/HeyItsGilbert/Log4NetParse/blob/master/CHANGELOG.md'
