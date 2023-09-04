@@ -2,6 +2,11 @@
 
 A module to parse log4net logs and give back easy to filter objects.
 
+![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/Log4NetParse)
+![PowerShell Gallery Version](https://img.shields.io/powershellgallery/v/Log4NetParse)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/HeyItsGilbert/Log4NetParse/.github/workflows/CI.yaml?branch=main)
+![PowerShell Gallery](https://img.shields.io/powershellgallery/p/Log4NetParse)
+
 ## Overview
 
 This was written to parse logs for tools that write out logs with Log4Net.
