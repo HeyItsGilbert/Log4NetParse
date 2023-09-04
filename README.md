@@ -24,7 +24,7 @@ Install-Module Log4NetParse
 Import-Module Log4NetParse
 
 # Find a regex for your pattern (i.e., useful for use in other tools)
-Convert-PatternLayout -PatternLayout ''
+Convert-PatternLayout -PatternLayout '%timestamp [%thread] %level %logger %ndc - %message%newline'
 
 # Parse a log and get set of objects
 Read-Log4NetLog -Path 'current.log'
