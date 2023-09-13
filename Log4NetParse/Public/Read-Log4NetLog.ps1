@@ -24,7 +24,8 @@
   https://logging.apache.org/log4net/release/sdk/?topic=html/T_log4net_Layout_PatternLayout.htm
 #>
 function Read-Log4NetLog {
-  [OutputType([System.Collections.ArrayList])]
+  # Makes PlatyPS sad
+  [OutputType([System.Collections.Generic.List[Log4NetLog]])]
   param (
     [ValidateScript({
         if (-Not ($_ | Test-Path) ) {
@@ -46,7 +47,7 @@ function Read-Log4NetLog {
     $files = Get-ChildItem -Path $Path -Filter $Filter | Sort-Object -Property LastWriteTime | Select-Object -Last $FileLimit
   }
 
-  [System.Collections.ArrayList]$parsed = @()
+  [System.Collections.Generic.List[Log4NetLog]]$parsed = @()
 
   # Get the regex for the Log4Net PatternLayout
   $RegularExpression = Convert-PatternLayout -PatternLayout $PatternLayout

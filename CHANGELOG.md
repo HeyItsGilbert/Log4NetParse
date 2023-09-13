@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.4.0] System.Collections.Generic.List[]
+
+Replace ArrayList to improve performance and be stricter about the expected
+object.
+
 ## [0.3.0] Formatting
 
 Adding formatters for both classes (`Log4NetLog` and `Log4NetLogLine`) so that
