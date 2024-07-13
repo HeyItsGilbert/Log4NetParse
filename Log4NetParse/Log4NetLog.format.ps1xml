@@ -31,7 +31,7 @@
                 <PropertyName>thread</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>logs</PropertyName>
+                <PropertyName>LogLines</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
             <Wrap/>

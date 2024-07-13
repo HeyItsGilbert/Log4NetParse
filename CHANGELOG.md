@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.0] logs to LogLines
+
+This version renames `logs` on the object to `LogLines`. For backwards
+compatibility `logs` is an alias to LogLines.
+
 ## [0.4.0] System.Collections.Generic.List[]
 
 Replace ArrayList to improve performance and be stricter about the expected
@@ -14,7 +19,8 @@ object.
 
 Adding formatters for both classes (`Log4NetLog` and `Log4NetLogLine`) so that
 it's easier to parse the objects. There is coloring using $PSStyle which means
-you need PS7 or to install the [PSStyle module](https://www.powershellgallery.com/packages/PSStyle).
+you need PS7 or to install the
+[PSStyle module](https://www.powershellgallery.com/packages/PSStyle).
 
 ## [0.2.0] Compiled
 

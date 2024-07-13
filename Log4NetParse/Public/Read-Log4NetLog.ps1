@@ -44,7 +44,8 @@ function Read-Log4NetLog {
   )
   $files = Get-Item -Path $Path
   if ($files.PSIsContainer) {
-    $files = Get-ChildItem -Path $Path -Filter $Filter | Sort-Object -Property LastWriteTime | Select-Object -Last $FileLimit
+    $files = Get-ChildItem -Path $Path -Filter $Filter |
+      Sort-Object -Property LastWriteTime | Select-Object -Last $FileLimit
   }
 
   [System.Collections.Generic.List[Log4NetLog]]$parsed = @()
@@ -63,7 +64,7 @@ function Read-Log4NetLog {
         # If it matches the regex, tag it
         if ( $m.Groups['thread'].Value -ne $currentSession.thread) {
           if ($currentSession) {
-            $currentSession.endTime = $currentSession.logs[-1].time
+            $currentSession.endTime = $currentSession.LogLines[-1].time
             $parsed.Add($currentSession) > $null
           }
 
@@ -75,7 +76,7 @@ function Read-Log4NetLog {
           )
         }
 
-        $currentSession.logs.Add(
+        $currentSession.LogLines.Add(
           [Log4NetLogLine]::new(
             [Datetime]($m.Groups['date'].Value -replace ',', '.'),
             $m.Groups['thread'].Value,
@@ -85,7 +86,7 @@ function Read-Log4NetLog {
       } else {
         # if it doesn't match regex, append to the previous
         if ($currentSession) {
-          $currentSession.logs[-1].AppendMessage($line)
+          $currentSession.LogLines[-1].AppendMessage($line)
         } else {
           # This might happen if the log starts on what should have been a
           # multiline entry... Not very likely
