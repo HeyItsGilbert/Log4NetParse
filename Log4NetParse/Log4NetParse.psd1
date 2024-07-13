@@ -12,7 +12,7 @@
   RootModule = 'Log4NetParse.psm1'
 
   # Version number of this module.
-  ModuleVersion = '0.4.0'
+  ModuleVersion = '1.0.0'
 
   # Supported PSEditions
   # CompatiblePSEditions = @()
@@ -24,7 +24,7 @@
   Author = 'Gilbert Sanchez'
 
   # Company or vendor of this module
-  CompanyName = 'Unknown'
+  CompanyName = 'Gilbert Sanchez'
 
   # Copyright statement for this module
   Copyright = '(c) Gilbert Sanchez. All rights reserved.'

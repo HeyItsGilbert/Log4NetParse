@@ -71,9 +71,9 @@ Chocolatey upgraded 0/1 packages.
 "@
     }
 
-    $parsed = Read-Log4NetLog -Path $singleFile
-    $multiple = Read-Log4NetLog -Path $folder
-    $moreLimit = Read-Log4NetLog -Path $folder -FileLimit 10
+    $script:parsed = Read-Log4NetLog -Path $singleFile
+    $script:multiple = Read-Log4NetLog -Path $folder
+    $script:moreLimit = Read-Log4NetLog -Path $folder -FileLimit 10
   }
 
   Context 'For Single File' {
@@ -82,7 +82,7 @@ Chocolatey upgraded 0/1 packages.
     }
 
     It 'Parses the correct number of lines per session' {
-      $parsed[0].logs.Count | Should -Be 11
+      $parsed[0].LogLines.Count | Should -Be 11
     }
 
     It 'Detects the right session number' {
