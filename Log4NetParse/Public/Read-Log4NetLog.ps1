@@ -91,10 +91,7 @@ function Read-Log4NetLog {
         # if it doesn't match regex, append to the previous
         if ($threadMatch) {
           Write-Verbose "Appending to existing thread: $threadMatch"
-          $parsed.Item($threadMatch).AppendLastLogLine(
-            $currentDateTime,
-            $line
-          )
+          $parsed.Item($threadMatch).AppendLastLogLine($line)
         } else {
           # This might happen if the log starts on what should have been a
           # multiline entry... Not very likely

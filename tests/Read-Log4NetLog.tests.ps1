@@ -108,4 +108,10 @@ Chocolatey upgraded 0/1 packages.
       $multiple[1].logs.Count | Should -Be 9
     }
   }
+
+  It 'Parses a log with lines that have the same exact time' {
+    $results = Read-Log4NetLog "$PSScriptRoot\fixtures\ch copy.log"
+    $results.Count | Should -Be 4
+    $results.Thread | Should -Be @(12720, 6432, 18380, 14068)
+  }
 }

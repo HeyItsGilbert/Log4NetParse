@@ -17,6 +17,11 @@ Note: My use of Log4Net is limited and most the regex for different pattern
 names are a complete guess by me. If you are familiar with these, please file
 an issue or make a PR.
 
+## Documentation
+
+Docs automatically updated at
+[heyitsgilbert.github.io/Log4NetParse](https://heyitsgilbert.github.io/Log4NetParse/)
+
 ## Installation
 
 ```powershell
