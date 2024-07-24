@@ -66,9 +66,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### None
+
 ## OUTPUTS
 
-### System.Object
+### System.Text.RegularExpressions.Regex
+
 ## NOTES
 
 ## RELATED LINKS

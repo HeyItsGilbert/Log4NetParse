@@ -36,9 +36,9 @@ AllowUnofficialBuild='False'|Input='zoom'|AllVersions='False'|
 SkipPackageInstallProvider='False'|SkipHookScripts='False'|
 2023-06-14 14:22:09,418 57332 [DEBUG] - _ Chocolatey:ChocolateyUpgradeCommand - Normal Run Mode _
 2023-06-14 14:22:09,422 57332 [INFO ] - Upgrading the following packages:
-2023-06-14 14:22:09,422 57332 [INFO ] - Detected environment as cpe.
-2023-06-14 14:22:09,423 57332 [INFO ] - zoom
-2023-06-14 14:22:09,423 57332 [INFO ] - By upgrading, you accept licenses for the packages.
+2023-06-14 14:22:09,423 57332 [INFO ] - Detected environment as cpe.
+2023-06-14 14:22:09,424 57332 [INFO ] - zoom
+2023-06-14 14:22:09,425 57332 [INFO ] - By upgrading, you accept licenses for the packages.
 2023-06-14 14:22:10,107 57332 [INFO ] - zoom v5.14.11.17466 is newer than the most recent.
   You must be smarter than the average bear...
 2023-06-14 14:22:10,113 57332 [WARN ] - .
@@ -47,27 +47,28 @@ Chocolatey upgraded 0/1 packages.
 2023-06-14 14:22:10,115 57332 [DEBUG] - Sending message 'PostRunMessage' out if there are subscribers...
 2023-06-14 14:22:10,117 57332 [DEBUG] - Exiting with 100
 2023-06-14 14:22:09,410 12345 [DEBUG] - The source 'http://127.0.0.1:18081/chocoapi/' evaluated to a 'normal' source type
-2023-06-14 14:22:09,410 54321 [DEBUG] - The source 'http://127.0.0.1:18081/chocoapi/' evaluated to a 'normal' source type
+2023-06-14 14:22:09,411 54321 [DEBUG] - The source 'http://127.0.0.1:18081/chocoapi/' evaluated to a 'normal' source type
 '@
     # Create 10 files with 2 random sessions
     0..10 | ForEach-Object {
       $randID = Get-Random -Minimum 1000 -Maximum 99999
       $randID2 = $randID - 100
+      $day = "{0:d2}" -f $_
       Set-Content "TestDrive:\folder\$($_).log" -Value @"
-2023-06-14 14:22:09,411 $randId [DEBUG] - Ffoo
-2023-06-14 14:22:09,418 $randId [DEBUG] - _ Chocolatey:ChocolateyUpgradeCommand - Normal Run Mode _
-2023-06-14 14:22:09,422 $randId [INFO ] - Upgrading the following packages:
-2023-06-14 14:22:09,423 $randId [INFO ] - zoom
-2023-06-14 14:22:09,423 $randId [INFO ] - By upgrading, you accept licenses for the packages.
-2023-06-14 14:22:10,107 $randId [INFO ] - zoom v5.14.11.17466 is newer than the most recent.
+2023-06-$day 14:22:09,411 $randId [DEBUG] - Ffoo
+2023-06-$day 14:22:09,418 $randId [DEBUG] - _ Chocolatey:ChocolateyUpgradeCommand - Normal Run Mode _
+2023-06-$day 14:22:09,422 $randId [INFO ] - Upgrading the following packages:
+2023-06-$day 14:22:09,423 $randId [INFO ] - zoom
+2023-06-$day 14:22:10,115 $randId [DEBUG] - Sending message 'PostRunMessage' out if there are subscribers...
+2023-06-$day 14:22:10,117 $randId [DEBUG] - Exiting with 0
+2023-06-$day 15:22:10,411 $randId2 [DEBUG] - Ffoo
+2023-06-$day 15:22:10,412 $randId2 [DEBUG] - Exiting with 0
+2023-06-$day 14:22:10,423 $randId [INFO ] - By upgrading, you accept licenses for the packages.
+2023-06-$day 14:22:11,107 $randId [INFO ] - zoom v5.14.11.17466 is newer than the most recent.
   You must be smarter than the average bear...
-2023-06-14 14:22:10,113 $randId [WARN ] - .
+2023-06-$day 14:22:11,113 $randId [WARN ] - .
 Chocolatey upgraded 0/1 packages.
   See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
-2023-06-14 14:22:10,115 $randId [DEBUG] - Sending message 'PostRunMessage' out if there are subscribers...
-2023-06-14 14:22:10,117 $randId [DEBUG] - Exiting with 0
-2023-06-14 15:22:09,411 $randId2 [DEBUG] - Ffoo
-2023-06-14 15:22:10,117 $randId2 [DEBUG] - Exiting with 0
 "@
     }
 
@@ -104,7 +105,7 @@ Chocolatey upgraded 0/1 packages.
     }
 
     It 'Parses the correct number of lines per session' {
-      $multiple[0].logs.Count | Should -Be 9
+      $multiple[1].logs.Count | Should -Be 9
     }
   }
 }
