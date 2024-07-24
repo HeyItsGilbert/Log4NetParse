@@ -14,7 +14,7 @@ Parses a log4net into an object that is easier to search and filter.
 
 ```
 Read-Log4NetLog [[-Path] <String[]>] [[-FileLimit] <Int32>] [[-Filter] <String>] [[-PatternLayout] <String>]
- [<CommonParameters>]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -91,7 +91,22 @@ Aliases:
 
 Required: False
 Position: 4
-Default value: %timestamp %thread [%level] - %message%newline
+Default value: %date %thread [%-5level] - %message
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ProgressAction
+{{ Fill ProgressAction Description }}
+
+```yaml
+Type: ActionPreference
+Parameter Sets: (All)
+Aliases: proga
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -103,7 +118,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### System.Collections.ArrayList
+### Log4NetLog
 ## NOTES
 Works for Windows PowerShell and PowerShell Core.
 

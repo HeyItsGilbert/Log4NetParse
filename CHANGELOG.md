@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.0] Support Out of Order Log Entries
+
+### Added
+
+- Implement IComparable for Log4NetLog class.
+- Move logs into a hidden `_logs` property which is a SortedList.
+- `LogLines` and `logs` property now both a script property which returns the
+  `_logs` SortedList values. This will ensure that LogLines are always in order
+  regardless of which file they came from.
+- `Read-Log4NetLog` now tracks parsed threads in a hash table, and returns the
+  values by the StartTime in descending order.
+- Added type accelerators to fix PlatyPS logging.
+
+### Fixed
+
+- Support having log threads be out of order. This can happen when multiple
+  processes run.
+
 ## [1.0.0] logs to LogLines
 
 This version renames `logs` on the object to `LogLines`. For backwards

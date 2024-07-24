@@ -1,6 +1,7 @@
-class Log4NetLog {
+class Log4NetLog : System.IComparable {
+  hidden [System.Collections.SortedList]$_logs
   [int]$Thread
-  [System.Collections.Generic.List[Log4NetLogLine]]$LogLines
+  # [System.Collections.ArrayList]$LogLines
   [datetime]$StartTime
   [datetime]$EndTime
   [string]$FilePath
@@ -10,6 +11,14 @@ class Log4NetLog {
       MemberType = 'AliasProperty'
       MemberName = 'logs'
       Value = 'LogLines'
+    }
+    @{
+      MemberType = 'ScriptProperty'
+      MemberName = 'LogLines'
+      Value = { [System.Collections.ArrayList]$this._logs.Values } # Getter
+      SecondValue = { # Setter
+        $this.AddLogLine($args[0])
+      }
     }
   )
 
@@ -22,13 +31,47 @@ class Log4NetLog {
 
   Log4NetLog(
     [int]$Thread,
-    [datetime]$StartTime,
     [string]$FilePath
   ) {
     $this.Thread = $Thread
-    $this.StartTime = $StartTime
-    $this.LogLines = [System.Collections.Generic.List[Log4NetLogLine]]::new()
+    $this._logs = [System.Collections.SortedList]::new()
     $this.FilePath = $FilePath
+  }
+
+  # This parses all the logs for entries that are part of the class
+  [void] ParseSpecialLogs() {
+    $this.StartTime = $this._logs.GetByIndex(0).time
+    $this.EndTime = $this._logs.GetByIndex($this._logs.Count - 1).time
+  }
+
+  [void]AddLogLine(
+    [Log4NetLogLine]$line
+  ) {
+    $this._logs.Add($line.time, $line)
+  }
+
+  [void]AppendLastLogLine(
+    [datetime]$logDatetime,
+    [string]$Line
+  ) {
+    $this._logs[$logDatetime].AppendMessage($line)
+  }
+
+  # Setup the comparable method.
+  [int] CompareTo([object]$Other) {
+    # If the other object's null, consider this instance "greater than" it
+    if ($null -eq $Other) {
+      return 1
+    }
+    # If the other object isn't a temperature, we can't compare it.
+    $OtherLog = $Other -as [Log4NetLog]
+    if ($null -eq $OtherLog) {
+      throw [System.ArgumentException]::new(
+        "Object must be of type 'Temperature'."
+      )
+    }
+    # Compare the temperatures as Kelvin.
+    return $this.Thread.CompareTo($OtherLog.Thread)
   }
 
 }
