@@ -1,5 +1,5 @@
 class Log4NetLog : System.IComparable {
-  hidden [System.Collections.SortedList]$_logs
+  hidden [System.Collections.Generic.List[Log4NetLogLine]]$_logs
   [int]$Thread
   # [System.Collections.ArrayList]$LogLines
   [datetime]$StartTime
@@ -15,7 +15,7 @@ class Log4NetLog : System.IComparable {
     @{
       MemberType = 'ScriptProperty'
       MemberName = 'LogLines'
-      Value = { [System.Collections.ArrayList]$this._logs.Values } # Getter
+      Value = { $this._logs.Sort(); $this._logs } # Getter
       SecondValue = { # Setter
         $this.AddLogLine($args[0])
       }
@@ -34,27 +34,27 @@ class Log4NetLog : System.IComparable {
     [string]$FilePath
   ) {
     $this.Thread = $Thread
-    $this._logs = [System.Collections.SortedList]::new()
+    $this._logs = [System.Collections.Generic.List[Log4NetLogLine]]::new()
     $this.FilePath = $FilePath
   }
 
   # This parses all the logs for entries that are part of the class
   [void] ParseSpecialLogs() {
-    $this.StartTime = $this._logs.GetByIndex(0).time
-    $this.EndTime = $this._logs.GetByIndex($this._logs.Count - 1).time
+    $this._logs.Sort()
+    $this.StartTime = $this._logs[0].time
+    $this.EndTime = $this._logs[-1].time
   }
 
   [void]AddLogLine(
     [Log4NetLogLine]$line
   ) {
-    $this._logs.Add($line.time, $line)
+    $this._logs.Add($line)
   }
 
   [void]AppendLastLogLine(
-    [datetime]$logDatetime,
     [string]$Line
   ) {
-    $this._logs[$logDatetime].AppendMessage($line)
+    $this._logs[-1].AppendMessage($line)
   }
 
   # Setup the comparable method.

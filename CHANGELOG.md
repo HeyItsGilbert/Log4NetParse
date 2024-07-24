@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.1] Switch from SortedList to List
+
+### Fixes
+
+- Now uses a List type for logs which allows us to use the Log4NetLogLine
+  comparer method. Previously if two logs had the same exact time then it would
+  have a collision in the SortedList.
+
 ## [1.1.0] Support Out of Order Log Entries
 
 ### Added
@@ -18,7 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   values by the StartTime in descending order.
 - Added type accelerators to fix PlatyPS logging.
 
-### Fixed
+### Fixes
 
 - Support having log threads be out of order. This can happen when multiple
   processes run.
