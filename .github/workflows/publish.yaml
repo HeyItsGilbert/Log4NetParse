@@ -7,3 +7,4 @@ on:
 jobs:
   build:
     uses: HeyItsGilbert/.github/.github/workflows/PublishModule.yml@main
+    secrets: inherit
