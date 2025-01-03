@@ -6,4 +6,4 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    uses: HeyItsGilbert/.github/.github/workflows/PublishModule.yaml@main
+    uses: HeyItsGilbert/.github/.github/workflows/PublishModule.yml@main
