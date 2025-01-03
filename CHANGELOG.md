@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.2] Add Fatal Level
+
+### Fixes
+
+- Adds missing Fatal level.
+
 ## [1.1.1] Switch from SortedList to List
 
 ### Fixes
