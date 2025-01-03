@@ -7,4 +7,4 @@ permissions:
   pull-requests: write
 jobs:
   ci:
-    uses: HeyItsGilbert/.github/.github/workflows/ModuleCI.yaml@main
+    uses: HeyItsGilbert/.github/.github/workflows/ModuleCI.yml@main
